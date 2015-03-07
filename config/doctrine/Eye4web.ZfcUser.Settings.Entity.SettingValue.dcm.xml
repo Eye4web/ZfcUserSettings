@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Eye4web\ZfcUser\Settings\Entity\SettingValue" table="user_settings">
+        <id name="setting" association-key="true" />
+        <many-to-one field="setting" target-entity="Eye4web\ZfcUser\Settings\Entity\Setting">
+            <join-column name="setting" referenced-column-name="id" />
+        </many-to-one>
+        <id name="user" type="string" length="36" />
+        <field name="value" type="text" />
+    </entity>
+
+</doctrine-mapping>
