@@ -9,3 +9,4 @@
 - Add Factory\View\Helper\UserSettingHelperFactory test
 - Changed passed Service Name in Mapper\DoctrineORM\UserSettingMapperFactory as 'Doctrine\ORM\EntityManager' as there is no service named 'zfcuser_doctrine_em'
 - Add Factory\Mapper\DoctrineORM\UserSettingMapperFactory test
+- Add Controller\Plugin\UserSettingPlugin test
