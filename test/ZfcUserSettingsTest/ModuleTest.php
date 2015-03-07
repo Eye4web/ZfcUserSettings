@@ -7,7 +7,7 @@ use Zend\Mvc\MvcEvent;
 
 class ModuleTest extends PHPUnit_Framework_TestCase
 {
-    /** @var \Eye4web\ZfcUser\ZfcUserSettings\Module */
+    /** @var \Eye4web\ZfcUser\Settings\Module */
     protected $module;
 
     public function setUp()
