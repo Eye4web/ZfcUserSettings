@@ -18,7 +18,7 @@ class ModuleTest extends PHPUnit_Framework_TestCase
     /**
      * @covers Eye4web\ZfcUser\Settings\Module::onBootstrap
      */
-    public function testSetGetUploadPath()
+    public function testOnBootstrap()
     {
         $this->module->onBootstrap(new MvcEvent());
     }
