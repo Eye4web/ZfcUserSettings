@@ -26,7 +26,7 @@ class ModuleTest extends PHPUnit_Framework_TestCase
     /**
      * @covers Eye4web\ZfcUser\Settings\Module::getConfig
      */
-    public function testSetGetConfig()
+    public function testGetConfig()
     {
         $this->assertInternalType('array', $this->module->getConfig());
     }
