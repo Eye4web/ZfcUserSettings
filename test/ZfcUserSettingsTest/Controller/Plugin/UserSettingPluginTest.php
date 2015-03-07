@@ -17,7 +17,7 @@ class UserSettingPluginTest extends \PHPUnit_Framework_TestCase
 
     /**
      *
-     * @var AdapterChain
+     * @var AuthenticationService
      */
     protected $authenticationService;
 
