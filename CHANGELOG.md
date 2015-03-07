@@ -12,3 +12,4 @@
 - Add Controller\Plugin\UserSettingPlugin test
 - Add View\Helper\UserSettingHelper test ( UserSettingHelper::getSetting() still partially tested, still can't test calling 'ZfcUserIdentity' view helper inside it with view property)
 - Add Service\UserSettingService test
+- work on Mapper\DoctrineORM\UserSettingMapper test
