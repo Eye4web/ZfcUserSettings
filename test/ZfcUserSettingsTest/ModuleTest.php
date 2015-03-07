@@ -1,5 +1,5 @@
 <?php
-namespace Eye4web\ZfcUserSettingsTest\Options;
+namespace Eye4web\ZfcUserSettingsTest;
 
 use Eye4web\ZfcUser\Settings\Module;
 use PHPUnit_Framework_TestCase;
