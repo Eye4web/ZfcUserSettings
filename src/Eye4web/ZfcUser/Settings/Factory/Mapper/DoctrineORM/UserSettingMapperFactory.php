@@ -32,7 +32,7 @@ class UserSettingMapperFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $entityManager = $serviceLocator->get('zfcuser_doctrine_em');
+        $entityManager = $serviceLocator->get('Doctrine\ORM\EntityManager');
 
         return new UserSettingMapper($entityManager);
     }
