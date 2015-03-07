@@ -23,4 +23,31 @@ class UserSettingHelperTest extends \PHPUnit_Framework_TestCase
         $instance = new User();
         $this->helper->__invoke('allow_email', $instance);
     }
+// *
+    /**
+     * @dataProvider provideUserInstance
+     *
+    public function testGetUserSetting($instance)
+    {
+        if (! $instance) {
+            $view = $this->getMock('Zend\View\Renderer\RendererInterface');
+
+            $mockUser = $this->getMock('ZfcUser\Entity\UserInterface');
+            $view->expects($this->once())
+                 ->method('__call')
+                 ->with('ZfcUserIdentity')
+                 ->will($this->returnValue($mockUser));
+        }
+
+        $this->helper->getSetting('allow_email', $instance);
+    }
+
+    public function provideUserInstance()
+    {
+        return [
+            [new User()],
+            [null],
+        ];
+    }
+*/
 }
