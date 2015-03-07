@@ -1,6 +1,6 @@
 <?php
 
-namespace Eye4web\ZfcUserProfilePictureTest\Factory\Controller;
+namespace Eye4web\ZfcUserSettingsTest\Factory\Controller;
 
 use Eye4web\ZfcUser\Settings\Factory\Controller\Plugin\UserSettingPluginFactory;
 use Zend\Mvc\Controller\PluginManager;

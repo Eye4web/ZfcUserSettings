@@ -1,6 +1,6 @@
 <?php
 
-namespace Eye4web\ZfcUserProfilePictureTest\Factory\Mapper\DoctrineORM;
+namespace Eye4web\ZfcUserSettingsTest\Factory\Mapper\DoctrineORM;
 
 use Doctrine\ORM\EntityManager;
 use Eye4web\ZfcUser\Settings\Factory\Mapper\DoctrineORM\UserSettingMapperFactory;

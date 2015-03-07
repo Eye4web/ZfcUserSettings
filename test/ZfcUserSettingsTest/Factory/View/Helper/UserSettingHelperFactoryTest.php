@@ -1,6 +1,6 @@
 <?php
 
-namespace Eye4web\ZfcUserProfilePictureTest\Factory\View;
+namespace Eye4web\ZfcUserSettingsTest\Factory\View;
 
 use Eye4web\ZfcUser\Settings\Factory\View\Helper\UserSettingHelperFactory;
 use Zend\View\HelperPluginManager;
