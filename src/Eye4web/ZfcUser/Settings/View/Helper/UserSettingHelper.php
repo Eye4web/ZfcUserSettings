@@ -21,6 +21,7 @@ namespace Eye4web\ZfcUser\Settings\View\Helper;
 use Zend\View\Helper\AbstractHelper;
 use Eye4web\ZfcUser\Settings\Service\UserSettingsServiceInterface;
 use ZfcUser\Entity\UserInterface;
+use ZfcUser\View\Helper\ZfcUserIdentity;
 
 class UserSettingHelper extends AbstractHelper
 {
@@ -30,9 +31,14 @@ class UserSettingHelper extends AbstractHelper
     private $userSettingsService;
 
     /**
+     * @var ZfcUserIdentity
+     */
+    private $zfcUserIdentity;
+
+    /**
      * @param UserSettingsServiceInterface $userSettingsService
      */
-    public function __construct(UserSettingsServiceInterface $userSettingsService)
+    public function __construct(UserSettingsServiceInterface $userSettingsService, ZfcUserIdentity $zfcUserIdentity)
     {
         $this->userSettingsService = $userSettingsService;
     }
