@@ -41,6 +41,7 @@ class UserSettingHelper extends AbstractHelper
     public function __construct(UserSettingsServiceInterface $userSettingsService, ZfcUserIdentity $zfcUserIdentity)
     {
         $this->userSettingsService = $userSettingsService;
+        $this->zfcUserIdentity     = $zfcUserIdentity;
     }
 
     /**
@@ -61,7 +62,7 @@ class UserSettingHelper extends AbstractHelper
     public function getSetting($setting, UserInterface $user = null)
     {
         if (!$user) {
-            $user = $this->view->ZfcUserIdentity();
+            $user = $this->zfcUserIdentity->__invoke();
         }
 
         return $this->userSettingsService->getvalue($setting, $user);

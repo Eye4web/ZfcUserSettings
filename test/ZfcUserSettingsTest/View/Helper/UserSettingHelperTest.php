@@ -13,10 +13,15 @@ class UserSettingHelperTest extends \PHPUnit_Framework_TestCase
 
     protected $userSettingsService;
 
+    protected $zfcUserIdentityHelper;
+
     public function setUp()
     {
-        $this->userSettingsService = $this->getMock('Eye4web\ZfcUser\Settings\Service\UserSettingsServiceInterface');
-        $this->helper = new ViewHelper($this->userSettingsService);
+        $this->userSettingsService   = $this->getMock('Eye4web\ZfcUser\Settings\Service\UserSettingsServiceInterface');
+        $this->zfcUserIdentityHelper = $this->getMockBuilder('ZfcUser\View\Helper\ZfcUserIdentity')
+                                            ->disableOriginalConstructor()
+                                            ->getMock();
+        $this->helper = new ViewHelper($this->userSettingsService, $this->zfcUserIdentityHelper);
     }
 
     public function testInvoke()
@@ -31,20 +36,12 @@ class UserSettingHelperTest extends \PHPUnit_Framework_TestCase
     public function testGetUserSetting($instance)
     {
         if (!$instance) {
-            $view = $this->getMock('Zend\View\Renderer\PhpRenderer');
-            $this->helper->setView($view);
+            $user = new User();
+            $this->zfcUserIdentityHelper->expects($this->once())
+                 ->method('__invoke')
+                 ->will($this->returnValue($user));
 
-            $mockZfcUserIdentity = $this->getMockBuilder('ZfcUser\View\Helper\ZfcUserIdentity')
-                                        ->disableOriginalConstructor()
-                                        ->getMock();
-            $view->expects($this->once())
-                 ->method('__call')
-                 ->with('ZfcUserIdentity', array())
-                 ->will($this->returnValue($mockZfcUserIdentity));
-            $mockZfcUserIdentity->expects($this->once())
-                                ->method('__invoke')
-                                ->will($this->returnValue(new User()));
-            $instance = $view->__call('ZfcUserIdentity', array())->__invoke();
+            $instance = $this->zfcUserIdentityHelper->__invoke();
         }
 
         $this->userSettingsService->expects($this->once())

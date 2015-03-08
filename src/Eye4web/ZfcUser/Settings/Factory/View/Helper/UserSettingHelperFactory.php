@@ -36,7 +36,8 @@ class UserSettingHelperFactory implements FactoryInterface
         $serviceLocator = $helperLocator->getServiceLocator();
 
         $userSettingsService = $serviceLocator->get('Eye4web\ZfcUser\Settings\Service\UserSettingsService');
+        $zfcUserIdentity     = $helperLocator->get('ZfcUserIdentity');
 
-        return new UserSettingHelper($userSettingsService);
+        return new UserSettingHelper($userSettingsService, $zfcUserIdentity);
     }
 }

@@ -49,6 +49,15 @@ class UserSettingHelperFactoryTest extends PHPUnit_Framework_TestCase
                              ->with('Eye4web\ZfcUser\Settings\Service\UserSettingsService')
                              ->willReturn($userSettingService);
 
+        $zfcUserIdentityViewHelper = $this->getMockBuilder('ZfcUser\View\Helper\ZfcUserIdentity')
+                                          ->disableOriginalConstructor()
+                                          ->getMock();
+
+        $this->viewHelperManager->expects($this->once())
+                                ->method('get')
+                                ->with('ZfcUserIdentity')
+                                ->willReturn($zfcUserIdentityViewHelper);
+
         $result = $this->factory->createService($this->viewHelperManager);
 
         $this->assertInstanceOf('Eye4web\ZfcUser\Settings\View\Helper\UserSettingHelper', $result);
