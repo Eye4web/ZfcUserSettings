@@ -8,7 +8,7 @@ use Eye4web\ZfcUser\Settings\Entity\Setting;
 use PHPUnit_Framework_TestCase;
 use ZfcUser\Entity\User;
 
-class UserSettingMapperMapperTest extends PHPUnit_Framework_TestCase
+class UserSettingMapperTest extends PHPUnit_Framework_TestCase
 {
     /** @var UserSettingMapper */
     protected $mapper;

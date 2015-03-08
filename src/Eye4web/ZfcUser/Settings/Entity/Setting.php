@@ -91,6 +91,4 @@ class Setting implements SettingInterface
     {
         $this->category = $category;
     }
-
-
 }

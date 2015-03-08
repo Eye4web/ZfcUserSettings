@@ -20,5 +20,4 @@ namespace Eye4web\ZfcUser\Settings\Entity;
 
 interface SettingValueInterface
 {
-
 }

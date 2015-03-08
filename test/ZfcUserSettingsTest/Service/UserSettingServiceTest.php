@@ -7,7 +7,7 @@ use Eye4web\ZfcUser\Settings\Mapper\UserSettingMapperInterface;
 use PHPUnit_Framework_TestCase;
 use ZfcUser\Entity\User;
 
-class ProfilePictureServiceTest extends PHPUnit_Framework_TestCase
+class UserSettingServiceTest extends PHPUnit_Framework_TestCase
 {
     /** @var UserSettingsService */
     protected $service;
@@ -51,5 +51,4 @@ class ProfilePictureServiceTest extends PHPUnit_Framework_TestCase
             [null],
         ];
     }
-
 }

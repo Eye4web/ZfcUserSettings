@@ -60,7 +60,6 @@ class UserSettingsService implements UserSettingsServiceInterface
     // @codeCoverageIgnoreStart
     public function getSetting($setting)
     {
-
     }
     // @codeCoverageIgnoreEnd
 }
