@@ -30,25 +30,34 @@ class UserSettingHelperTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($this->helper->__invoke('allow_email', $instance));
     }
 
-    public function testGetUserSettingWithNullUser()
-    {
-        $user = new User();
-        $this->zfcUserIdentityHelper->expects($this->any())
-             ->method('__invoke')
-             ->will($this->returnValue($user));
-        $this->zfcUserIdentityHelper->__invoke();
-
-        $this->helper->getSetting('allow_email', null);
-    }
-
-    public function testGetUserSettingWithUserInstance()
+    /**
+     * @dataProvider provideUserInstance
+     */
+    public function testGetUserSettingWithUserInstance($instance)
     {
         $userInstance = new User();
+
+        if (!$instance) {
+            $user = new User();
+            $this->zfcUserIdentityHelper->expects($this->any())
+                 ->method('__invoke')
+                 ->will($this->returnValue($user));
+            $userInstance = $this->zfcUserIdentityHelper->__invoke();
+        }
+
         $this->userSettingsService->expects($this->once())
                                   ->method('getValue')
                                   ->with('allow_email', $userInstance)
                                   ->will($this->returnValue('allow'));
 
-        $this->helper->getSetting('allow_email', $userInstance);
+        $this->assertEquals('allow', $this->helper->getSetting('allow_email', $instance));
+    }
+
+    public function provideUserInstance()
+    {
+        return [
+            [new User()],
+            [null]
+        ];
     }
 }
