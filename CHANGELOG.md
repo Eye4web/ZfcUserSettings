@@ -21,3 +21,4 @@
 - fix PSR2 cs and add .travis.yml config
 - Mapper\DoctrineORM\UserSettingMapper fully tested
 - All Entity\* tested
+- Changelog
