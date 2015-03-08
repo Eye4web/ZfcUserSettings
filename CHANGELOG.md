@@ -22,3 +22,4 @@
 - Mapper\DoctrineORM\UserSettingMapper fully tested
 - All Entity\* tested
 - Changelog
+- View\Helper\UserSettingHelper tested
