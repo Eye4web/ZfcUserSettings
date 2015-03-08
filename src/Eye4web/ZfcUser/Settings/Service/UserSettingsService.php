@@ -57,8 +57,9 @@ class UserSettingsService implements UserSettingsServiceInterface
      * @param string $setting
      * @return Setting
      */
+    // @codeCoverageIgnoreStart
     public function getSetting($setting)
     {
-
     }
+    // @codeCoverageIgnoreEnd
 }

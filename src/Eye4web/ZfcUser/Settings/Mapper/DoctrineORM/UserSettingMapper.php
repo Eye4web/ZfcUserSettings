@@ -60,5 +60,4 @@ class UserSettingMapper implements UserSettingMapperInterface
     {
         return $this->entityManager->find("Eye4web\ZfcUser\Settings\Entity\Setting", $setting);
     }
-
 }

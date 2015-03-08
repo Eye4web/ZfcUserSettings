@@ -73,6 +73,4 @@ class SettingValue implements SettingValueInterface
     {
         $this->value = $value;
     }
-
-
 }
