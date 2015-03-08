@@ -13,3 +13,7 @@
 - Add View\Helper\UserSettingHelper test ( UserSettingHelper::getSetting() still partially tested, still can't test calling 'ZfcUserIdentity' view helper inside it with view property)
 - Add Service\UserSettingService test
 - work on Mapper\DoctrineORM\UserSettingMapper test
+
+2015 8, March
+-------------
+- Add "zf-commons/zfc-user-doctrine-orm" in "require" in composer.json to support call for "zfcuser_doctrine_em" service
