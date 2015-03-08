@@ -23,3 +23,4 @@
 - All Entity\* tested
 - Changelog
 - View\Helper\UserSettingHelper tested
+- Finally 100% code coverage!

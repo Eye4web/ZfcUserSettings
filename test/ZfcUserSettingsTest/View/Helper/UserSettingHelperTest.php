@@ -30,33 +30,25 @@ class UserSettingHelperTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($this->helper->__invoke('allow_email', $instance));
     }
 
-    /**
-     * @dataProvider provideUserInstance
-     */
-    public function testGetUserSetting($instance)
+    public function testGetUserSettingWithNullUser()
     {
-        if (!$instance) {
-            $user = new User();
-            $this->zfcUserIdentityHelper->expects($this->once())
-                 ->method('__invoke')
-                 ->will($this->returnValue($user));
+        $user = new User();
+        $this->zfcUserIdentityHelper->expects($this->any())
+             ->method('__invoke')
+             ->will($this->returnValue($user));
+        $this->zfcUserIdentityHelper->__invoke();
 
-            $instance = $this->zfcUserIdentityHelper->__invoke();
-        }
-
-        $this->userSettingsService->expects($this->once())
-                                  ->method('getValue')
-                                  ->with('allow_email', $instance)
-                                  ->will($this->returnValue('allow'));
-
-        $this->helper->getSetting('allow_email', $instance);
+        $this->helper->getSetting('allow_email', null);
     }
 
-    public function provideUserInstance()
+    public function testGetUserSettingWithUserInstance()
     {
-        return [
-            [new User()],
-            [null],
-        ];
+        $userInstance = new User();
+        $this->userSettingsService->expects($this->once())
+                                  ->method('getValue')
+                                  ->with('allow_email', $userInstance)
+                                  ->will($this->returnValue('allow'));
+
+        $this->helper->getSetting('allow_email', $userInstance);
     }
 }
