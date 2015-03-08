@@ -20,3 +20,4 @@
 - Changed back "Doctrine\ORM\EntityManager" service call to "zfcuser_doctrine_em" in Settings\Factory\Mapper\DoctrineORM\UserSettingMapperFactory and updated tests against it
 - fix PSR2 cs and add .travis.yml config
 - Mapper\DoctrineORM\UserSettingMapper fully tested
+- All Entity\* tested
