@@ -33,7 +33,7 @@ class UserSettingMapperFactoryTest extends PHPUnit_Framework_TestCase
 
         $this->serviceLocator->expects($this->at(0))
                              ->method('get')
-                             ->with('Doctrine\ORM\EntityManager')
+                             ->with('zfcuser_doctrine_em')
                              ->willReturn($objectManager);
 
         $result = $this->factory->createService($this->serviceLocator);

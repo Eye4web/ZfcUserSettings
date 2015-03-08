@@ -17,3 +17,4 @@
 2015 8, March
 -------------
 - Add "zf-commons/zfc-user-doctrine-orm" in "require" in composer.json to support call for "zfcuser_doctrine_em" service
+- Changed back "Doctrine\ORM\EntityManager" service call to "zfcuser_doctrine_em" in Settings\Factory\Mapper\DoctrineORM\UserSettingMapperFactory and updated tests against it
