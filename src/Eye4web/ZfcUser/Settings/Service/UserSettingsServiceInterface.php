@@ -35,4 +35,18 @@ interface UserSettingsServiceInterface
      * @return Setting
      */
     public function getSetting($setting);
+
+    /**
+     * @param $setting
+     * @param UserInterface $user
+     * @param $value
+     * @return mixed
+     */
+    public function updateUserSetting($setting, UserInterface $user, $value);
+
+    /**
+     * @param string $category
+     * @return array
+     */
+    public function getSettingsByCategory($category);
 }

@@ -27,7 +27,7 @@ class SettingValue implements SettingValueInterface
     private $value;
 
     /**
-     * @return mixed
+     * @return Setting
      */
     public function getSetting()
     {

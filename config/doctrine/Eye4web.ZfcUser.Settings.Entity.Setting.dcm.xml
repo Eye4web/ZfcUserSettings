@@ -11,6 +11,7 @@
         <field name="name" type="string" length="255" />
         <field name="description" type="text" />
         <field name="category" type="string" length="255" />
+        <field name="type" type="string" length="25" />
     </entity>
 
 </doctrine-mapping>

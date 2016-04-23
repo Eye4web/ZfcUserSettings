@@ -20,6 +20,10 @@ namespace Eye4web\ZfcUser\Settings\Entity;
 
 class Setting implements SettingInterface
 {
+    CONST TYPE_STRING = 'string';
+    CONST TYPE_INTEGER = 'integer';
+    CONST TYPE_BOOLEAN = 'boolean';
+    
     private $id;
 
     private $name;
@@ -27,6 +31,8 @@ class Setting implements SettingInterface
     private $description;
 
     private $category;
+
+    private $type;
 
     /**
      * @return mixed
@@ -90,5 +96,21 @@ class Setting implements SettingInterface
     public function setCategory($category)
     {
         $this->category = $category;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
     }
 }

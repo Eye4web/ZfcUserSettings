@@ -19,6 +19,7 @@
 namespace Eye4web\ZfcUser\Settings\Service;
 
 use Eye4web\ZfcUser\Settings\Entity\Setting;
+use Eye4web\ZfcUser\Settings\Entity\SettingValue;
 use Eye4web\ZfcUser\Settings\Mapper\UserSettingMapperInterface;
 use ZfcUser\Entity\UserInterface;
 
@@ -40,26 +41,63 @@ class UserSettingsService implements UserSettingsServiceInterface
     /**
      * @param string $setting
      * @param UserInterface $user
-     * @return string|null
+     * @return bool|int|mixed|null|string
      */
     public function getValue($setting, UserInterface $user)
     {
         $userSetting = $this->mapper->getUserSetting($setting, $user);
 
         if ($userSetting) {
-            return $userSetting->getValue();
+            return $this->parseValue($userSetting);
         }
 
         return null;
+    }
+
+    public function updateUserSetting($setting, UserInterface $user, $value)
+    {
+        return $this->mapper->updateUserSetting($setting, $user, $value);
+    }
+
+    /**
+     * @param $category
+     * @return Setting
+     */
+    public function getSettingsByCategory($category)
+    {
+        return $this->mapper->getSettingsByCategory($category);
     }
 
     /**
      * @param string $setting
      * @return Setting
      */
-    // @codeCoverageIgnoreStart
     public function getSetting($setting)
     {
+        return $this->mapper->getSetting($setting);
     }
-    // @codeCoverageIgnoreEnd
+
+    /**
+     * @param SettingValue $settingValue
+     * @return int|mixed|string|boolean
+     */
+    private function parseValue(SettingValue $settingValue)
+    {
+        $value = $settingValue->getValue();
+        
+        switch ($settingValue->getSetting()->getType()) {
+            case Setting::TYPE_BOOLEAN:
+                // Returns TRUE for "1", "true", "on" and "yes". Returns FALSE otherwise.
+                $value = filter_var($value, FILTER_VALIDATE_BOOLEAN);
+                break;
+            case Setting::TYPE_INTEGER:
+                $value = (int) $value;
+                break;
+            case Setting::TYPE_STRING:
+                $value = (string) $value;
+                break;
+        }
+
+        return $value;
+    }
 }

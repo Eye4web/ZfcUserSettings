@@ -36,4 +36,18 @@ interface UserSettingMapperInterface
      * @return Setting|null
      */
     public function getSetting($setting);
+
+    /**
+     * @param string $category
+     * @return array
+     */
+    public function getSettingsByCategory($category);
+
+    /**
+     * @param $setting
+     * @param UserInterface $user
+     * @param $value
+     * @return mixed
+     */
+    public function updateUserSetting($setting, UserInterface $user, $value);
 }

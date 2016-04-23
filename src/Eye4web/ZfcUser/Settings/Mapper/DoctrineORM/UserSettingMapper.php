@@ -53,11 +53,40 @@ class UserSettingMapper implements UserSettingMapperInterface
     }
 
     /**
+     * @param $setting
+     * @param UserInterface $user
+     * @param $value
+     * @return bool
+     */
+    public function updateUserSetting($setting, UserInterface $user, $value)
+    {
+        /** @var \Eye4web\ZfcUser\Settings\Entity\SettingValue $userSettingValue */
+        $userSettingValue = $this->entityManager->getRepository('Eye4web\ZfcUser\Settings\Entity\SettingValue')->findOneBy(['user' => $user, 'setting' => $setting]);
+        if ($userSettingValue) {
+            $userSettingValue->setValue($value);
+            $this->entityManager->flush();
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * @param string $setting
      * @return Setting
      */
     public function getSetting($setting)
     {
         return $this->entityManager->find("Eye4web\ZfcUser\Settings\Entity\Setting", $setting);
+    }
+
+    /**
+     * @param string $category
+     * @return array
+     */
+    public function getSettingsByCategory($category)
+    {
+        return $this->entityManager->getRepository("Eye4web\ZfcUser\Settings\Entity\Setting")->findBy([
+            'category' => $category
+        ]);
     }
 }
