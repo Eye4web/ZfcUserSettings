@@ -10,7 +10,7 @@
             <join-column name="setting" referenced-column-name="id" />
         </many-to-one>
         <id name="user" type="string" length="36" />
-        <field name="value" type="text" />
+        <field name="value" type="text" nullable="true"/>
     </entity>
 
 </doctrine-mapping>

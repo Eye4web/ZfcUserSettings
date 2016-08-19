@@ -54,9 +54,9 @@ class UserSettingsService implements UserSettingsServiceInterface
         return null;
     }
 
-    public function updateUserSetting($setting, UserInterface $user, $value)
+    public function updateUserSetting($setting, UserInterface $user, $value, $createIfNotExists = false)
     {
-        return $this->mapper->updateUserSetting($setting, $user, $value);
+        return $this->mapper->updateUserSetting($setting, $user, $value, $createIfNotExists);
     }
 
     /**

@@ -40,9 +40,10 @@ interface UserSettingsServiceInterface
      * @param $setting
      * @param UserInterface $user
      * @param $value
+     * @param bool $createIfNotExists
      * @return mixed
      */
-    public function updateUserSetting($setting, UserInterface $user, $value);
+    public function updateUserSetting($setting, UserInterface $user, $value, $createIfNotExists = false);
 
     /**
      * @param string $category

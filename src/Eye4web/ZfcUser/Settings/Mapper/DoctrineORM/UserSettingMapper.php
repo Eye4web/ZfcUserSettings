@@ -58,10 +58,22 @@ class UserSettingMapper implements UserSettingMapperInterface
      * @param $value
      * @return bool
      */
-    public function updateUserSetting($setting, UserInterface $user, $value)
+    public function updateUserSetting($setting, UserInterface $user, $value, $createIfNotExists = false)
     {
         /** @var \Eye4web\ZfcUser\Settings\Entity\SettingValue $userSettingValue */
         $userSettingValue = $this->entityManager->getRepository('Eye4web\ZfcUser\Settings\Entity\SettingValue')->findOneBy(['user' => $user, 'setting' => $setting]);
+        
+        if (!$userSettingValue && $createIfNotExists) {
+            $settingObject = $this->entityManager->find(Setting::class, $setting);
+            if (!$settingObject) {
+                return false;
+            }
+            $userSettingValue = new SettingValue();
+            $userSettingValue->setSetting($settingObject);
+            $userSettingValue->setUser($user->getId());
+            $this->entityManager->persist($userSettingValue);
+        }
+        
         if ($userSettingValue) {
             $userSettingValue->setValue($value);
             $this->entityManager->flush();
