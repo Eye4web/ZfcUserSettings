@@ -12,6 +12,7 @@
         <field name="description" type="text" />
         <field name="category" type="string" length="255" />
         <field name="type" type="string" length="25" />
+        <field name="defaultValue" type="string" length="255" nullable="true" />
     </entity>
 
 </doctrine-mapping>

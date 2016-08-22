@@ -48,12 +48,28 @@ class UserSettingsService implements UserSettingsServiceInterface
         $userSetting = $this->mapper->getUserSetting($setting, $user);
 
         if ($userSetting) {
-            return $this->parseValue($userSetting);
+            return $this->parseValue($userSetting->getValue(), $userSetting->getSetting()->getType());
         }
 
         return null;
     }
 
+    /**
+     * @param Setting $setting
+     * @return bool|int|mixed|string
+     */
+    public function getDefaultValue(Setting $setting)
+    {
+        return $this->parseValue($setting->getDefaultValue(), $setting->getType());
+    }
+
+    /**
+     * @param $setting
+     * @param UserInterface $user
+     * @param $value
+     * @param bool $createIfNotExists
+     * @return mixed
+     */
     public function updateUserSetting($setting, UserInterface $user, $value, $createIfNotExists = false)
     {
         return $this->mapper->updateUserSetting($setting, $user, $value, $createIfNotExists);
@@ -78,14 +94,13 @@ class UserSettingsService implements UserSettingsServiceInterface
     }
 
     /**
-     * @param SettingValue $settingValue
-     * @return int|mixed|string|boolean
+     * @param $value
+     * @param $type
+     * @return int|mixed|string
      */
-    private function parseValue(SettingValue $settingValue)
+    private function parseValue($value, $type)
     {
-        $value = $settingValue->getValue();
-        
-        switch ($settingValue->getSetting()->getType()) {
+        switch ($type) {
             case Setting::TYPE_BOOLEAN:
                 // Returns TRUE for "1", "true", "on" and "yes". Returns FALSE otherwise.
                 $value = filter_var($value, FILTER_VALIDATE_BOOLEAN);
@@ -95,6 +110,11 @@ class UserSettingsService implements UserSettingsServiceInterface
                 break;
             case Setting::TYPE_STRING:
                 $value = (string) $value;
+                break;
+            case Setting::TYPE_NULL:
+            case is_null($type):
+            default:
+                return null;
                 break;
         }
 

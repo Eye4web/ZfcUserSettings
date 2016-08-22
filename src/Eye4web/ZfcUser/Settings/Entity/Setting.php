@@ -23,6 +23,7 @@ class Setting implements SettingInterface
     CONST TYPE_STRING = 'string';
     CONST TYPE_INTEGER = 'integer';
     CONST TYPE_BOOLEAN = 'boolean';
+    CONST TYPE_NULL = 'null';
     
     private $id;
 
@@ -33,6 +34,8 @@ class Setting implements SettingInterface
     private $category;
 
     private $type;
+
+    private $defaultValue;
 
     /**
      * @return mixed
@@ -96,6 +99,22 @@ class Setting implements SettingInterface
     public function setCategory($category)
     {
         $this->category = $category;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDefaultValue()
+    {
+        return $this->defaultValue;
+    }
+
+    /**
+     * @param mixed $defaultValue
+     */
+    public function setDefaultValue($defaultValue)
+    {
+        $this->defaultValue = $defaultValue;
     }
 
     /**
