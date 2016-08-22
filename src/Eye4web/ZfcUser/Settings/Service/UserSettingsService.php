@@ -72,7 +72,9 @@ class UserSettingsService implements UserSettingsServiceInterface
      */
     public function updateUserSetting($setting, UserInterface $user, $value, $createIfNotExists = false)
     {
-        return $this->mapper->updateUserSetting($setting, $user, $value, $createIfNotExists);
+        $setting = $this->mapper->getSetting($setting);
+        $value = $this->parseValueForDatabase($value, $setting->getType());
+        return $this->mapper->updateUserSetting($setting->getId(), $user, $value, $createIfNotExists);
     }
 
     /**
@@ -96,11 +98,55 @@ class UserSettingsService implements UserSettingsServiceInterface
     /**
      * @param $value
      * @param $type
+     * @return int|mixed|null|string
+     */
+    private function parseValueForDatabase($value, $type)
+    {
+        if (is_null($value)) {
+            return null;
+        }
+
+        switch ($type) {
+            case null:
+                $value = null;
+                break;
+            case Setting::TYPE_BOOLEAN:
+                if ($this->parseValue($value, $type)) {
+                    $value = 1;
+                } else {
+                    $value = 0;
+                }
+                break;
+            case Setting::TYPE_INTEGER:
+                $value = (int) $value;
+                break;
+            case Setting::TYPE_STRING:
+                $value = (string) $value;
+                break;
+            case Setting::TYPE_NULL:
+            default:
+                $value = null;
+                break;
+        }
+
+        return $value;
+    }
+
+    /**
+     * @param $value
+     * @param $type
      * @return int|mixed|string
      */
     private function parseValue($value, $type)
     {
+        if (is_null($value)) {
+            return null;
+        }
+        
         switch ($type) {
+            case null:
+                $value = null;
+                break;
             case Setting::TYPE_BOOLEAN:
                 // Returns TRUE for "1", "true", "on" and "yes". Returns FALSE otherwise.
                 $value = filter_var($value, FILTER_VALIDATE_BOOLEAN);
@@ -112,9 +158,8 @@ class UserSettingsService implements UserSettingsServiceInterface
                 $value = (string) $value;
                 break;
             case Setting::TYPE_NULL:
-            case is_null($type):
             default:
-                return null;
+                $value = null;
                 break;
         }
 
