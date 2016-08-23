@@ -73,6 +73,9 @@ class UserSettingsService implements UserSettingsServiceInterface
     public function updateUserSetting($setting, UserInterface $user, $value, $createIfNotExists = false)
     {
         $setting = $this->mapper->getSetting($setting);
+        if (!$setting) {
+            return false;
+        }
         $value = $this->parseValueForDatabase($value, $setting->getType());
         return $this->mapper->updateUserSetting($setting->getId(), $user, $value, $createIfNotExists);
     }
