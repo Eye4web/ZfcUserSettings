@@ -22,7 +22,7 @@
         }
     },
     "require": {
-        "php": "^7.2",
+        "php": "^7.2|~8.0",
         "zf-commons/zfc-user": "~3.0.0",
         "zf-commons/zfc-user-doctrine-orm": "dev-patch-3"
     },
