@@ -22,7 +22,7 @@ use Eye4web\ZfcUser\Settings\Service\UserSettingsService;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class UserSettingsServiceFactory implements FactoryInterface
+class UserSettingsServiceFactory implements \Zend\ServiceManager\Factory\FactoryInterface
 {
     /**
      * Create service
@@ -30,7 +30,7 @@ class UserSettingsServiceFactory implements FactoryInterface
      * @param ServiceLocatorInterface $serviceLocator
      * @return mixed
      */
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function __invoke(\Interop\Container\ContainerInterface $serviceLocator, $requestedName, array $options = null)
     {
         $mapper = $serviceLocator->get('Eye4web\ZfcUser\Settings\Mapper\DoctrineORM\UserSettingMapper');
 
