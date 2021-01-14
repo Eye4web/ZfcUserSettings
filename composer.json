@@ -23,7 +23,7 @@
     },
     "require": {
         "php": "^7.2|~8.0",
-        "zf-commons/zfc-user": "~3.0.0",
+        "zf-commons/zfc-user": "dev-patch-1",
         "zf-commons/zfc-user-doctrine-orm": "dev-patch-3"
     },
     "require-dev": {
@@ -36,10 +36,15 @@
             "Eye4web\\ZfcUser\\Settings\\": "src/"
         }
     },
-    "repositories": [    
+    "repositories": [
         {
             "type": "vcs",
             "url": "https://github.com/samsonasik/ZfcUserDoctrineORM",
+            "no-api": true
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/samsonasik/ZfcUser",
             "no-api": true
         }
     ]
