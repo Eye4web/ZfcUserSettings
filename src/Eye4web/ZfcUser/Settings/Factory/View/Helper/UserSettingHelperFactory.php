@@ -33,7 +33,7 @@ class UserSettingHelperFactory implements \Zend\ServiceManager\Factory\FactoryIn
     public function __invoke(\Interop\Container\ContainerInterface $helperLocator, $requestedName, array $options = null)
     {
         /** @var ServiceLocatorInterface $serviceLocator */
-        $serviceLocator = $helperLocator->;
+        $serviceLocator = $helperLocator;
 
         $userSettingsService = $serviceLocator->get('Eye4web\ZfcUser\Settings\Service\UserSettingsService');
         $zfcUserIdentity     = $helperLocator->get('ZfcUserIdentity');
