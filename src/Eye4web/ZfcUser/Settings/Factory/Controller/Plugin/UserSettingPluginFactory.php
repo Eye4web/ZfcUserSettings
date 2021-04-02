@@ -27,7 +27,7 @@ class UserSettingPluginFactory implements \Zend\ServiceManager\Factory\FactoryIn
     public function __invoke(\Interop\Container\ContainerInterface $pluginManager, $requestedName, array $options = null)
     {
         /** @var ServiceLocatorInterface $serviceLocator */
-        $serviceLocator = $pluginManager->;
+        $serviceLocator = $pluginManager;
 
         $userSettingsService = $serviceLocator->get('Eye4web\ZfcUser\Settings\Service\UserSettingsService');
 
