@@ -30,7 +30,7 @@ class UserSettingHelperFactory implements \Zend\ServiceManager\Factory\FactoryIn
      * @param ServiceLocatorInterface $helperLocator
      * @return UserSettingHelper|mixed
      */
-    public function __invoke(\Interop\Container\ContainerInterface $helperLocator, $requestedName, array $options = null)
+    public function __invoke(\Psr\Container\ContainerInterface $helperLocator, $requestedName, array $options = null)
     {
         /** @var ServiceLocatorInterface $serviceLocator */
         $serviceLocator = $helperLocator;

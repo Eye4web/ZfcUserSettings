@@ -30,7 +30,7 @@ class UserSettingMapperFactory implements \Zend\ServiceManager\Factory\FactoryIn
      * @param ServiceLocatorInterface $serviceLocator
      * @return mixed
      */
-    public function __invoke(\Interop\Container\ContainerInterface $serviceLocator, $requestedName, array $options = null)
+    public function __invoke(\Psr\Container\ContainerInterface $serviceLocator, $requestedName, array $options = null)
     {
         $entityManager = $serviceLocator->get('zfcuser_doctrine_em');
 

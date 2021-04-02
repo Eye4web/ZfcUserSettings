@@ -30,7 +30,7 @@ class UserSettingsServiceFactory implements \Zend\ServiceManager\Factory\Factory
      * @param ServiceLocatorInterface $serviceLocator
      * @return mixed
      */
-    public function __invoke(\Interop\Container\ContainerInterface $serviceLocator, $requestedName, array $options = null)
+    public function __invoke(\Psr\Container\ContainerInterface $serviceLocator, $requestedName, array $options = null)
     {
         $mapper = $serviceLocator->get('Eye4web\ZfcUser\Settings\Mapper\DoctrineORM\UserSettingMapper');
 
