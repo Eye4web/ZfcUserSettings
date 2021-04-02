@@ -22,7 +22,7 @@ use Eye4web\ZfcUser\Settings\View\Helper\UserSettingHelper;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class UserSettingHelperFactory implements FactoryInterface
+class UserSettingHelperFactory implements \Zend\ServiceManager\Factory\FactoryInterface
 {
     /**
      * Create service
@@ -30,13 +30,10 @@ class UserSettingHelperFactory implements FactoryInterface
      * @param ServiceLocatorInterface $helperLocator
      * @return UserSettingHelper|mixed
      */
-    public function createService(ServiceLocatorInterface $helperLocator)
+    public function __invoke(\Psr\Container\ContainerInterface $helperLocator, $requestedName, array $options = null)
     {
-        /** @var ServiceLocatorInterface $serviceLocator */
-        $serviceLocator = $helperLocator->getServiceLocator();
-
-        $userSettingsService = $serviceLocator->get('Eye4web\ZfcUser\Settings\Service\UserSettingsService');
-        $zfcUserIdentity     = $helperLocator->get('ZfcUserIdentity');
+        $userSettingsService = $helperLocator->get('Eye4web\ZfcUser\Settings\Service\UserSettingsService');
+        $zfcUserIdentity     = $helperLocator->get('ViewHelperManager')->get('ZfcUserIdentity');
 
         return new UserSettingHelper($userSettingsService, $zfcUserIdentity);
     }

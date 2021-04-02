@@ -22,12 +22,12 @@ use Eye4web\ZfcUser\Settings\Controller\Plugin\UserSettingPlugin;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class UserSettingPluginFactory implements FactoryInterface
+class UserSettingPluginFactory implements \Zend\ServiceManager\Factory\FactoryInterface
 {
-    public function createService(ServiceLocatorInterface $pluginManager)
+    public function __invoke(\Psr\Container\ContainerInterface $pluginManager, $requestedName, array $options = null)
     {
         /** @var ServiceLocatorInterface $serviceLocator */
-        $serviceLocator = $pluginManager->getServiceLocator();
+        $serviceLocator = $pluginManager;
 
         $userSettingsService = $serviceLocator->get('Eye4web\ZfcUser\Settings\Service\UserSettingsService');
 
